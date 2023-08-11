@@ -17,21 +17,28 @@ public class App extends Application {
     private HBox hbox;
     private Label lbEnunciado, lbMusica;
     private Button btPlay;    
+    private MediaPlayer mediaPlayer;
+    
     
     @Override
-    public void start(Stage stage){
-        root = new VBox();
-        hbox = new HBox();
-        lbEnunciado = new Label("Spotify 2.0");
-        lbMusica = new Label("Nome da Música");
-        btPlay = new Button("Play");
+    public void start(Stage stage) {
+    // Create a button to play the music.
+    Button playButton = new Button("Play");
+    playButton.setOnAction(event -> {
+        // Create a media player and load the music file.
+        mediaPlayer = new MediaPlayer(new Media(getClass().getResource("Teste.mp3").toExternalForm()));
 
-        root.getChildren().addAll(lbEnunciado, hbox);
-        hbox.getChildren().addAll(lbMusica, btPlay);
-        root.setAlignment(Pos.CENTER);
-        root.setSpacing(10);
-        
-        stage.setScene(new Scene(root, 480, 600));
-        stage.show();
-    }
+        // Play the music.
+        mediaPlayer.play();
+    });
+
+    // Create a stack pane to hold the button.
+    StackPane layout = new StackPane();
+    layout.getChildren().add(playButton);
+
+    // Create a scene and add it to the stage.
+    Scene scene = new Scene(layout, 300, 250);
+    stage.setScene(scene);
+    stage.show();
+  }
 }
