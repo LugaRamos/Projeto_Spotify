@@ -32,7 +32,7 @@ public class App extends Application {
         mediaPlayer.play();
     });
 
-    // Create a stack pane to hold the button.
+    // Create a stack pane to hold the button. 
     StackPane layout = new StackPane();
     layout.getChildren().add(playButton);
 
